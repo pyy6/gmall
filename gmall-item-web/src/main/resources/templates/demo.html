@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--取值-->
+    <div th:text="${hello}">asdsf</div>
+
+    <!--循环-->
+    <div th:each="users:${list}" th:text="${users.name}">asdsf</div>
+
+    <div th:each="users:${list}">
+        <div th:text="${users.name}"></div>
+        <div th:text="${users.email}"></div>
+    </div>
+
+    <!--判断以及三目判断-->
+    <div th:if="${hello=='thymeleaf'}">判断结果显示</div>
+
+    <div th:text="(${hello=='thymeleaf'})?'yes':'no'">判断结果显示</div>
+
+    <!--引入页面或者页面中的片段-->
+    <div th:include="test"></div>
+    <div th:include="test::inner"></div>
+
+    <!--js函数调用 ,要求thymeleaf获取到的参数传递给js函数-->
+    <a href="javascript:a()"></a>
+    <a th:href="'javascript:a(\''+${hello}+'\')'">dian</a>
+<script language="JavaScript">
+    function a(hello){
+        alert(hello+"hahaha");
+    }
+</script>
+</body>
+</html>
